@@ -1,3 +1,4 @@
+import { HelmetProvider } from 'react-helmet-async';
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {
@@ -11,12 +12,17 @@ import App from './App'
 import './index.css'
 import HomePage from './pages/HomePage'
 import ProductPage from './pages/ProductPage'
+import axios from 'axios';
+
+
+axios.defaults.baseURL = 
+process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : '/'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} element={<HomePage />} />
-      <Route path="product/:slug" element={<ProductPage />} />
+      <Route path="products/:slug" element={<ProductPage />} />
 
     </Route>
 ));
@@ -24,6 +30,9 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <HelmetProvider>
+      <RouterProvider router={router}/>
+      </HelmetProvider>
+    
   </React.StrictMode>,
 )

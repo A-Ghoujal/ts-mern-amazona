@@ -1,7 +1,14 @@
+import cors from "cors";
 import express, { Request , Response } from "express";
 import { sampleProducts } from "./data";
 
-const app = express();
+const app = express()
+app.use(cors(
+    {
+        origin: ['http://localhost:5173'],
+        credentials: true
+    }
+))
 app.get('/api/products', (req: Request, res: Response) => {
     res.json(sampleProducts)
 })
