@@ -1,6 +1,6 @@
 import { useContext, useEffect } from'react'
-import { Nav, Container, Navbar, Button,  } from 'react-bootstrap'
-import { Outlet } from 'react-router-dom'
+import { Nav, Container, Navbar, Button, Badge,  } from 'react-bootstrap'
+import { Link, Outlet } from 'react-router-dom'
 import { Store } from './Store'
 
 
@@ -8,7 +8,7 @@ import { Store } from './Store'
 function App() {
  
   const {
-    state: { mode },
+    state: { mode, cart },
     dispatch,
   } = useContext(Store)
 
@@ -31,7 +31,13 @@ function App() {
         <Button variant={mode} onClick={switchModeHandler}>
               <i className={mode === 'light' ? 'fa fa-sun' : 'fa fa-moon'}></i>
             </Button>
-          <a href="/cart" className=" nav-link">Cart</a>
+            <Link to="/cart" className="nav-link">
+            {cart.cartItems.length > 0 && (
+                <Badge pill bg="danger">
+                  {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                </Badge>
+              )}
+            </Link>
           <a href="/signin" className="nav-link">Sign in</a>
         </Nav>
       </Navbar>
