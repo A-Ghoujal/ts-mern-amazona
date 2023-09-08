@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler'
 import { ProductModel } from '../models/productModel'
 
 export const productRouter = express.Router()
-// /api/prodcuts
+
 productRouter.get(
   '/',
   asyncHandler(async (req, res) => {
@@ -11,7 +11,7 @@ productRouter.get(
     res.json(products)
   })
 )
-// /api/slug/tshirt
+
 productRouter.get(
   '/slug/:slug',
   asyncHandler(async (req, res) => {
