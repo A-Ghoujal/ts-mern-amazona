@@ -29,7 +29,7 @@ export default function SignupPage() {
   }, [navigate, redirect, userInfo])
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { mutateAsync: signup, isLoading } = useSignupMutation()
+  const { mutateAsync: signup } = useSignupMutation()
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault()
